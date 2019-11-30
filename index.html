@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Document</title>
+    <style>
+        .container1,.container-3,.container-4,.container-5,.container-6{
+            border: 1px solid black;
+            margin: 0 auto;
+            width:75%;
+            text-align: center;
+        }
+     .flex-box-container-1{
+         display: flex;
+         border: 1px solid black;
+         padding: 10px;
+         flex-wrap:wrap;
+         justify-content: space-around;
+     }
+     .flex-box-container-1  div{
+         padding: 10px;
+         align-items: center;
+         border: 1px solid black;
+     }
+     .container-2{
+         border:1px solid red;
+         width:75%;
+         margin:0 auto;
+         text-align:center;
+     }
+     .flex-box-container-2,.flex-box-rps,.flex-box-pick-color,
+     .flex-blackjack-row-1,.flex-blackjack-row-2,.flex-blackjack-row-3,.flex-ajax-row-1{
+         display:flex;
+         flex-wrap: wrap;
+         justify-content: space-around;
+         border:1px solid blue;
+     }
+     .flex-blackjack-row-1,.flex-blackjack-row-2{
+         /* background:url('https://ie2-gfebf.cdnppb.net/mexchangeblackjack/turbo/17/assets/gameView/tableBackground.png?v17') center; */
+         background-color:rgb(7, 66, 7);
+         color:#fff;
+     }
+     .flex-blackjack-row-1 div{
+         border:1px solid black;
+         padding:10px;
+         text-align: center;
+        flex:1;
+         height:350px;
+
+     }
+     .flex-blackjack-row-1 img{
+         width:25%;
+         padding:10px;
+     }
+     .flex-blackjack-row-2 button{
+         border:1px solid black;
+         padding:10px;
+     }
+     table,th,td{
+         padding:5px;
+         border:1px solid black;
+     }
+     .flex-blackjack-row-2{
+         border:1px solid black;
+         padding:12px;
+     }
+     .flex-box-container-2 img{
+         margin:10px;
+         border:1px solid green;
+         padding:10px;
+         box-shadow: 0px 10px 50px rgba(0,0,0,0.7);
+
+     }
+     .flex-box-rps img:hover{
+         box-shadow: 0px 10px 50px rgba(37,50,233,1);
+     }
+    </style>
+</head>
+<body>
+     <div class="container1">
+            <h2>Challenge 1: your age in days</h2>
+
+            <div class="flex-box-container-1">
+
+                  <div>
+                        <button class="btn btn-primary" onclick="ageInDays()" >Click me</button>
+
+                  </div>
+                  <div>
+                        <button class="btn btn-danger" onclick="reset()">Reset</button>
+
+                  </div>
+
+            </div>
+            <div class="flex-box-container-1">
+                <div id="flex-box-result">
+
+
+                </div>
+            </div>
+     </div>
+     <div class="container-2">
+          <h2>Challenge 2: Cat Generator</h2>
+          <button class="btn btn-success" id="cat-generator" onclick="generateCat()">
+              Generate Cat
+          </button>
+          <div class="flex-box-container-2" id="flex-cat-gen"> 
+                   
+
+          </div>
+     </div>
+
+    <div class="container-3">
+        <h2>Challenge 3:Rock Paper Seissor</h2>
+        <div class="flex-box-rps" id="flex-box-rps-div">
+            <img src="http://images.clipartpanda.com/rock-clipart-clipart-harvestable-resources-rock.png" height="150px" width="150px"  id="rock" alt="" onclick="rpsGame(this)">
+            <img src="http://images.clipartpanda.com/paper-clipart-nexxuz-Loose-Leaf-Paper.png" height="150px" width="150px"  id="paper" alt="" onclick="rpsGame(this)">
+            <img src="https://thumbs.dreamstime.com/b/female-hand-sign-victory-sign-peace-sign-scissors-vector-color-flat-illustration-isolated-white-background-web-83128345.jpg"  height="150px" width="150px"  id="scissors" alt="" onclick="rpsGame(this)">
+
+        </div>
+    </div>
+    <div class="container-4">
+        <h2>Challenge 4: Change the button color</h2>
+        <div class="flex-box-pick-color">
+            <form action="">
+                <select name="backdrop" id="background" onchange="buttonColorChange(this)" id="">
+                    <option value="random">Random</option>
+                    <option value="red">Red</option>
+                    <option value="green">Green</option>
+                    <option value="reset">Reset</option>
+                </select>
+            </form>
+                <button class="btn btn-primary">Wee!</button>
+                <button class="btn btn-danger">Yahoo</button>
+                <button class="btn btn-warning">Google</button>
+                <button class="btn btn-success">Facebook!</button>
+        
+        </div>
+    </div>
+      <div class="container-5">
+          <h2>Challenge 5: Blackjack</h2>
+          <h3><span id="blackjact-result">Let's Play</span></h3>
+          <div class="flex-blackjack-row-1">
+              <div id="your-box">
+                  <h2>You: <span id="your-blackjack-result">0</span></h2>
+              </div>
+              <div id="dealer-box">
+                  <h2>Dealer: <span id="dealer-blackjack-result">0</span></h2>
+              </div>
+          </div>
+          <div class="flex-blackjack-row-2">
+              <div>
+                  <button class="btn-lg btn-primary  mr-2" id="blackjack-hit-button">Hit</button>
+                  <button class="btn-lg btn-warning mr-2" id="blackjack-stand-button">Stand</button>
+                  <button class="btn-lg btn-danger mr-2" id="blackjack-deal-button">Deal</button>
+              </div>
+          </div>
+          <div class="flex-blackjack-row-3">
+              <table>
+                  <tr>
+                      <th>Wins</th>
+                      <th>Losses</th>
+                      <th>Draws</th>
+                  </tr>
+                  <tr>
+                      <td><span id="wins">0</span></td>
+                      <td><span id="losses">0</span></td>
+                      <td><span id="draws">0</span></td>
+                  </tr>
+              </table>
+          </div>
+      </div>
+      <div class="container-6">
+          <h1>Challenge 6: Ajax Challenge</h1>
+          <div class="flex-ajax-row-1"><button class="btn btn-primary" onclick="ajax()">GET</button></div>
+      </div>
+     
+ <script src="home.js"></script>
+ 
+</body>
+</html>
